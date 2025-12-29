@@ -2,9 +2,7 @@ function Header() {
   return (
     <header className="border-b border-purple-500/20 backdrop-blur-sm bg-black/20">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-black">
-          Artisan Standups
-        </h1>
+        <h1 className="text-2xl font-bold text-black">Artisan Standups</h1>
         <nav className="flex gap-6">
           <button className="text-black hover:text-gray-700 transition-colors">
             Features
