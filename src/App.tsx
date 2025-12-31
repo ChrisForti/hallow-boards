@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
-import MainPage from "./components/mainPage";
+import MainPage from "./components/MainPage";
 import Design from "./components/Design";
 import Footer from "./components/Footer";
 
