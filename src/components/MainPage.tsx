@@ -4,7 +4,7 @@ function MainPage() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/surf-bg.jpg"
+          src={`${import.meta.env.BASE_URL}surf-bg.jpg`}
           alt="Surf background"
           className="w-full h-full object-cover"
         />
