@@ -85,6 +85,7 @@
 #### Option A: Custom Three.js/React Three Fiber
 
 **Project Structure:**
+
 ```
 src/
 ├── components/
@@ -103,17 +104,20 @@ src/
 ```
 
 **Design Inspiration:**
+
 - Follow Tinkercad's layout approach (left sidebar for shapes/templates, center viewport, right panel for properties)
 - Clean, intuitive controls with real-time preview
 - Progressive disclosure of advanced features
 
 **Implementation Strategy:**
+
 - Template-based parametric modeling using proven board formulas
 - Start with 3-5 base templates (shortboard, fish, longboard, funboard, gun)
 - Users modify parameters within validated ranges
 - Use industry-standard formulas for rocker curves and volume calculations
 
 **Implementation Tasks:**
+
 - [ ] Set up React Three Fiber + drei + zustand
 - [ ] Create 5 base board templates with accurate geometry
 - [ ] Implement parametric controls (length, width, thickness, rocker)

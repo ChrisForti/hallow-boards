@@ -42,6 +42,7 @@
 ```
 
 ### Layout Breakdown:
+
 - **Header**: 60px height, fixed position
 - **Tool Panel**: 240px width, left sidebar
 - **3D Viewport**: Flexible center area (min 600px width)
@@ -53,6 +54,7 @@
 ## 2. Customization Panel Design
 
 ### 2.1 Dimensions Panel
+
 ```
 ┌─────────────────────────────────────┐
 │ 📏 DIMENSIONS                   [−] │
@@ -84,6 +86,7 @@
 ```
 
 ### 2.2 Shape Panel
+
 ```
 ┌─────────────────────────────────────┐
 │ 🏄 SHAPE                        [−] │
@@ -118,6 +121,7 @@
 ```
 
 ### 2.3 Fins Panel
+
 ```
 ┌─────────────────────────────────────┐
 │ 🔱 FIN CONFIGURATION            [−] │
@@ -154,6 +158,7 @@
 ```
 
 ### 2.4 Materials Panel
+
 ```
 ┌─────────────────────────────────────┐
 │ 🎨 MATERIALS & FINISH           [−] │
@@ -201,6 +206,7 @@
 ## 3. User Flow Diagrams
 
 ### 3.1 Initial Load Flow
+
 ```
 START
   │
@@ -226,6 +232,7 @@ START
 ```
 
 ### 3.2 Customization Flow
+
 ```
 DESIGN MODE
   │
@@ -263,6 +270,7 @@ DESIGN MODE
 ```
 
 ### 3.3 Detailed Dimension Adjustment Flow
+
 ```
 User Adjusts Length Slider
   │
@@ -295,6 +303,7 @@ User Adjusts Length Slider
 ```
 
 ### 3.4 Save & Export Flow
+
 ```
 User Clicks "Save"
   │
@@ -332,6 +341,7 @@ User Clicks "Save"
 ## 4. Mobile Layout
 
 ### 4.1 Mobile Portrait (≤768px)
+
 ```
 ┌───────────────────────────┐
 │ ☰ Hollow Boards      [💾]│
@@ -380,6 +390,7 @@ User Clicks "Save"
 ### 4.2 Mobile Interaction Patterns
 
 **Touch Gestures:**
+
 - **Single Finger Drag**: Rotate board (orbit)
 - **Two Finger Pinch**: Zoom in/out
 - **Two Finger Drag**: Pan camera
@@ -387,6 +398,7 @@ User Clicks "Save"
 - **Long Press**: Toggle dimension overlays
 
 **Accordion Panels:**
+
 ```
 ┌─────────────────────────────┐
 │ ▼ DIMENSIONS            [×] │ ← Expanded
@@ -410,6 +422,7 @@ User Clicks "Save"
 ```
 
 **Bottom Sheet for Tools:**
+
 ```
 Tap on Hamburger Menu:
 
@@ -512,11 +525,12 @@ App
 ### 5.2 Key Component Props & State
 
 #### ThreeJSCanvas Component
+
 ```typescript
 interface ThreeJSCanvasProps {
   boardConfig: BoardConfiguration;
   onModelUpdate: (mesh: Mesh) => void;
-  viewMode: 'orbit' | 'fixed';
+  viewMode: "orbit" | "fixed";
   showDimensions: boolean;
   showGrid: boolean;
 }
@@ -534,6 +548,7 @@ interface ThreeJSCanvasProps {
 ```
 
 #### SliderInput Component
+
 ```typescript
 interface SliderInputProps {
   label: string;
@@ -550,12 +565,13 @@ interface SliderInputProps {
 ```
 
 #### ShapeSelector Component
+
 ```typescript
 interface ShapeSelectorProps {
   options: ShapeOption[];
   selected: string;
   onChange: (shapeId: string) => void;
-  renderMode: 'icons' | 'thumbnails';
+  renderMode: "icons" | "thumbnails";
   columns?: number; // Grid layout
 }
 
@@ -587,12 +603,12 @@ const breakpoints = {
   // - Bottom sheet for controls
   // - Touch gestures enabled
   // - Simplified controls
-  
+
   tablet: '768px-1024px',
   // - Two column layout (viewport + panels)
   // - Collapsible sidebars
   // - Touch + mouse support
-  
+
   desktop: '>1024px',
   // - Three column layout
   // - Fixed sidebars
@@ -604,15 +620,17 @@ const breakpoints = {
 ### 5.4 Position & Behavior Specs
 
 #### Header Component
+
 - **Position**: Fixed top, z-index: 1000
 - **Height**: 60px
 - **Background**: White with shadow
-- **Behavior**: 
+- **Behavior**:
   - Scrolls out of view on mobile when scrolling down
   - Reappears on scroll up
   - Buttons disable during calculations
 
 #### Tool Panel (Desktop)
+
 - **Position**: Fixed left, below header
 - **Width**: 240px (collapsed: 64px)
 - **Background**: Gray-50
@@ -623,6 +641,7 @@ const breakpoints = {
   - Keyboard navigation (1-5 keys)
 
 #### 3D Viewport
+
 - **Position**: Center, flexible
 - **Min Width**: 600px desktop, 100vw mobile
 - **Aspect Ratio**: Maintains board proportions
@@ -633,6 +652,7 @@ const breakpoints = {
   - Error boundary for WebGL failures
 
 #### Properties Panel (Desktop)
+
 - **Position**: Fixed right, below header
 - **Width**: 320px (collapsible to 0)
 - **Scroll**: Independent scroll within panel
@@ -643,6 +663,7 @@ const breakpoints = {
   - Real-time save indicator
 
 #### View Controls (Desktop)
+
 - **Position**: Fixed bottom, above footer
 - **Height**: 100px
 - **Background**: White with top border
@@ -652,6 +673,7 @@ const breakpoints = {
   - Highlight active view preset
 
 #### Bottom Sheet (Mobile)
+
 - **Position**: Fixed bottom, z-index: 999
 - **Initial Height**: 120px (collapsed)
 - **Max Height**: 80vh (expanded)
@@ -668,6 +690,7 @@ const breakpoints = {
 ### 6.1 3D Interface Patterns
 
 #### Camera Controls
+
 ```
 Best Practices:
 ✓ Default to 3/4 view showing most features
@@ -685,6 +708,7 @@ Avoid:
 ```
 
 #### Visual Feedback
+
 ```
 Real-time Updates:
 • Mesh updates: <100ms from slider change
@@ -700,6 +724,7 @@ Error States:
 ```
 
 #### Dimension Overlays
+
 ```
 Display Rules:
 • Show when: Hovering over viewport OR editing dimensions
@@ -722,6 +747,7 @@ Implementation:
 ### 6.2 Feedback Mechanisms
 
 #### Loading States
+
 ```typescript
 // Skeleton loading for 3D viewport
 <ViewportContainer>
@@ -750,6 +776,7 @@ Implementation:
 ```
 
 #### Toast Notifications
+
 ```typescript
 // Success messages
 toast.success("Design saved successfully!", {
@@ -757,8 +784,8 @@ toast.success("Design saved successfully!", {
   icon: "✓",
   action: {
     label: "View",
-    onClick: () => navigate('/my-designs')
-  }
+    onClick: () => navigate("/my-designs"),
+  },
 });
 
 // Error messages
@@ -766,18 +793,19 @@ toast.error("Failed to export design", {
   duration: 5000,
   action: {
     label: "Retry",
-    onClick: () => retryExport()
-  }
+    onClick: () => retryExport(),
+  },
 });
 
 // Info messages
 toast.info("Pro tip: Use number keys 1-5 to switch tools", {
   duration: 4000,
-  dismissible: true
+  dismissible: true,
 });
 ```
 
 #### Validation Feedback
+
 ```typescript
 // Input validation
 <SliderInput
@@ -786,7 +814,7 @@ toast.info("Pro tip: Use number keys 1-5 to switch tools", {
   validation={{
     min: 60, // 5 feet
     max: 120, // 10 feet
-    message: "Length must be between 5' and 10'"
+    message: "Length must be between 5' and 10'",
   }}
   // Visual states:
   // - Invalid: red border + error message
@@ -798,6 +826,7 @@ toast.info("Pro tip: Use number keys 1-5 to switch tools", {
 ### 6.3 Accessibility
 
 #### Keyboard Navigation
+
 ```
 Global Shortcuts:
 • Esc         - Close panels/modals
@@ -830,10 +859,11 @@ Slider Controls:
 ```
 
 #### Screen Reader Support
+
 ```typescript
 // Semantic HTML
 <nav aria-label="Design tools">
-  <button 
+  <button
     aria-label="Dimensions tool"
     aria-pressed={activeTool === 'dimensions'}
     aria-describedby="dims-description"
@@ -844,9 +874,9 @@ Slider Controls:
 </nav>
 
 // Live regions for dynamic updates
-<div 
-  role="status" 
-  aria-live="polite" 
+<div
+  role="status"
+  aria-live="polite"
   aria-atomic="true"
   className="sr-only"
 >
@@ -869,6 +899,7 @@ Slider Controls:
 ```
 
 #### Focus Management
+
 ```typescript
 // Trap focus in modals
 <Modal onClose={handleClose}>
@@ -880,7 +911,7 @@ Slider Controls:
       <button onClick={handleSave}>Save</button>
     </div>
   </FocusTrap>
-</Modal>
+</Modal>;
 
 // Restore focus after actions
 const buttonRef = useRef<HTMLButtonElement>(null);
@@ -892,14 +923,15 @@ const handleAction = () => {
 ```
 
 #### Color Contrast
+
 ```css
 /* WCAG AA compliance (4.5:1 minimum) */
 :root {
-  --text-primary: #1a1a1a;      /* 16:1 on white */
-  --text-secondary: #4a4a4a;    /* 9:1 on white */
-  --link-color: #0066cc;        /* 7:1 on white */
-  --error-color: #c70000;       /* 4.5:1 on white */
-  --success-color: #008500;     /* 4.5:1 on white */
+  --text-primary: #1a1a1a; /* 16:1 on white */
+  --text-secondary: #4a4a4a; /* 9:1 on white */
+  --link-color: #0066cc; /* 7:1 on white */
+  --error-color: #c70000; /* 4.5:1 on white */
+  --success-color: #008500; /* 4.5:1 on white */
 }
 
 /* Focus indicators */
@@ -928,12 +960,13 @@ const handleAction = () => {
 ### 6.4 Performance Optimization
 
 #### 3D Rendering
+
 ```typescript
 // LOD (Level of Detail) for complex geometry
 const surfboardLOD = new THREE.LOD();
-surfboardLOD.addLevel(highDetailMesh, 0);     // < 10 units
-surfboardLOD.addLevel(mediumDetailMesh, 10);  // 10-30 units
-surfboardLOD.addLevel(lowDetailMesh, 30);     // > 30 units
+surfboardLOD.addLevel(highDetailMesh, 0); // < 10 units
+surfboardLOD.addLevel(mediumDetailMesh, 10); // 10-30 units
+surfboardLOD.addLevel(lowDetailMesh, 30); // > 30 units
 
 // Throttle render loop
 const renderLoop = throttle(() => {
@@ -952,16 +985,17 @@ renderer.shadowMap.enabled = enableShadows;
 ```
 
 #### Asset Loading
+
 ```typescript
 // Lazy load 3D models
-const SurfboardModel = lazy(() => import('./models/Surfboard'));
+const SurfboardModel = lazy(() => import("./models/Surfboard"));
 
 // Preload critical assets
 useEffect(() => {
   Promise.all([
-    loadTexture('/textures/fiberglass.jpg'),
-    loadTexture('/textures/foam.jpg'),
-    loadFont('/fonts/Roboto.json')
+    loadTexture("/textures/fiberglass.jpg"),
+    loadTexture("/textures/foam.jpg"),
+    loadFont("/fonts/Roboto.json"),
   ]).then(() => setAssetsReady(true));
 }, []);
 
@@ -970,14 +1004,15 @@ useEffect(() => {
   src={lowResPreview}
   data-src={highResImage}
   className="blur-sm transition-all duration-300"
-  onLoad={e => {
+  onLoad={(e) => {
     e.currentTarget.src = e.currentTarget.dataset.src!;
-    e.currentTarget.classList.remove('blur-sm');
+    e.currentTarget.classList.remove("blur-sm");
   }}
-/>
+/>;
 ```
 
 #### State Management
+
 ```typescript
 // Memoize expensive calculations
 const boardVolume = useMemo(
@@ -998,7 +1033,7 @@ const MemoizedCanvas = memo(ThreeJSCanvas, (prev, next) => {
   renderItem={({ index, style }) => (
     <PresetCard preset={presets[index]} style={style} />
   )}
-/>
+/>;
 ```
 
 ---
@@ -1114,26 +1149,27 @@ src/
 ### 7.3 Core Implementation Examples
 
 #### Board Configuration Store (Zustand)
+
 ```typescript
 // lib/store/boardStore.ts
-import create from 'zustand';
-import { BoardConfiguration } from '@/types/board';
+import create from "zustand";
+import { BoardConfiguration } from "@/types/board";
 
 interface BoardStore {
   config: BoardConfiguration;
   history: BoardConfiguration[];
   historyIndex: number;
-  
+
   // Actions
   updateDimensions: (dims: Partial<Dimensions>) => void;
   updateShape: (shape: Partial<Shape>) => void;
   updateFins: (fins: Partial<FinConfig>) => void;
   updateMaterials: (materials: Partial<Materials>) => void;
-  
+
   // History
   undo: () => void;
   redo: () => void;
-  
+
   // Persistence
   saveDesign: () => Promise<void>;
   loadDesign: (id: string) => Promise<void>;
@@ -1143,62 +1179,63 @@ export const useBoardStore = create<BoardStore>((set, get) => ({
   config: getDefaultConfig(),
   history: [getDefaultConfig()],
   historyIndex: 0,
-  
+
   updateDimensions: (dims) => {
     const current = get().config;
     const updated = {
       ...current,
-      dimensions: { ...current.dimensions, ...dims }
+      dimensions: { ...current.dimensions, ...dims },
     };
-    
-    set(state => ({
+
+    set((state) => ({
       config: updated,
       history: [...state.history.slice(0, state.historyIndex + 1), updated],
-      historyIndex: state.historyIndex + 1
+      historyIndex: state.historyIndex + 1,
     }));
   },
-  
+
   undo: () => {
     const { history, historyIndex } = get();
     if (historyIndex > 0) {
       set({
         config: history[historyIndex - 1],
-        historyIndex: historyIndex - 1
+        historyIndex: historyIndex - 1,
       });
     }
   },
-  
+
   redo: () => {
     const { history, historyIndex } = get();
     if (historyIndex < history.length - 1) {
       set({
         config: history[historyIndex + 1],
-        historyIndex: historyIndex + 1
+        historyIndex: historyIndex + 1,
       });
     }
   },
-  
+
   saveDesign: async () => {
     const config = get().config;
     const thumbnail = await captureThumbnail();
-    
-    await fetch('/api/designs', {
-      method: 'POST',
-      body: JSON.stringify({ config, thumbnail })
+
+    await fetch("/api/designs", {
+      method: "POST",
+      body: JSON.stringify({ config, thumbnail }),
     });
-  }
+  },
 }));
 ```
 
 #### Surfboard Mesh Generator
+
 ```typescript
 // lib/geometry/surfboardGenerator.ts
-import * as THREE from 'three';
-import { BoardConfiguration } from '@/types/board';
+import * as THREE from "three";
+import { BoardConfiguration } from "@/types/board";
 
 export function generateSurfboardMesh(config: BoardConfiguration): THREE.Mesh {
   const { dimensions, shape } = config;
-  
+
   // Create outline curve
   const outline = createOutlineCurve(
     dimensions.length,
@@ -1206,31 +1243,28 @@ export function generateSurfboardMesh(config: BoardConfiguration): THREE.Mesh {
     shape.noseShape,
     shape.tailShape
   );
-  
+
   // Create rocker profile
   const rocker = createRockerProfile(
     dimensions.length,
     shape.rockerNose,
     shape.rockerTail
   );
-  
+
   // Create rail profile
-  const rail = createRailProfile(
-    dimensions.thickness,
-    shape.railType
-  );
-  
+  const rail = createRailProfile(dimensions.thickness, shape.railType);
+
   // Generate geometry using lofting
   const geometry = loftSurfboard(outline, rocker, rail);
-  
+
   // Create material
   const material = createMaterial(config.materials);
-  
+
   // Create mesh
   const mesh = new THREE.Mesh(geometry, material);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  
+
   return mesh;
 }
 
@@ -1243,17 +1277,17 @@ function createOutlineCurve(
   // Generate points along half the outline
   const points: THREE.Vector2[] = [];
   const segments = 50;
-  
+
   for (let i = 0; i <= segments; i++) {
     const t = i / segments; // 0 to 1, nose to tail
     const z = (t - 0.5) * length; // Center at origin
-    
+
     // Calculate width at this position
     let w = calculateWidthAtPosition(t, width, noseShape, tailShape);
-    
+
     points.push(new THREE.Vector2(z, w));
   }
-  
+
   return new THREE.SplineCurve(points);
 }
 
@@ -1267,34 +1301,40 @@ function calculateWidthAtPosition(
   const noseInfluence = Math.pow(1 - t, 2);
   const tailInfluence = Math.pow(t, 2);
   const middleInfluence = 2 * t * (1 - t);
-  
-  const noseWidth = noseShape === 'pointed' ? 0.1 : 
-                    noseShape === 'rounded' ? 0.3 : 0.5;
-  const tailWidth = tailShape === 'pintail' ? 0.4 :
-                    tailShape === 'squash' ? 0.7 : 0.8;
-  
-  return maxWidth * (
-    noseInfluence * noseWidth +
-    middleInfluence * 1.0 +
-    tailInfluence * tailWidth
+
+  const noseWidth =
+    noseShape === "pointed" ? 0.1 : noseShape === "rounded" ? 0.3 : 0.5;
+  const tailWidth =
+    tailShape === "pintail" ? 0.4 : tailShape === "squash" ? 0.7 : 0.8;
+
+  return (
+    maxWidth *
+    (noseInfluence * noseWidth +
+      middleInfluence * 1.0 +
+      tailInfluence * tailWidth)
   );
 }
 ```
 
 #### Main 3D Scene Component
+
 ```typescript
 // components/3d/Scene.tsx
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Environment } from '@react-three/drei';
-import { SurfboardMesh } from './SurfboardMesh';
-import { Lighting } from './Lighting';
-import { DimensionOverlay } from './DimensionOverlay';
-import { useBoardStore } from '@/lib/store/boardStore';
+import { Canvas } from "@react-three/fiber";
+import {
+  OrbitControls,
+  PerspectiveCamera,
+  Environment,
+} from "@react-three/drei";
+import { SurfboardMesh } from "./SurfboardMesh";
+import { Lighting } from "./Lighting";
+import { DimensionOverlay } from "./DimensionOverlay";
+import { useBoardStore } from "@/lib/store/boardStore";
 
 export function Scene() {
-  const config = useBoardStore(state => state.config);
-  const showDimensions = useUIStore(state => state.showDimensions);
-  
+  const config = useBoardStore((state) => state.config);
+  const showDimensions = useUIStore((state) => state.showDimensions);
+
   return (
     <Canvas
       shadows
@@ -1303,18 +1343,18 @@ export function Scene() {
       gl={{ antialias: true }}
     >
       {/* Environment */}
-      <color attach="background" args={['#f0f0f0']} />
-      <fog attach="fog" args={['#f0f0f0', 10, 50]} />
-      
+      <color attach="background" args={["#f0f0f0"]} />
+      <fog attach="fog" args={["#f0f0f0", 10, 50]} />
+
       {/* Lighting */}
       <Lighting />
-      
+
       {/* Board */}
       <SurfboardMesh config={config} />
-      
+
       {/* Overlays */}
       {showDimensions && <DimensionOverlay config={config} />}
-      
+
       {/* Controls */}
       <OrbitControls
         enableDamping
@@ -1323,7 +1363,7 @@ export function Scene() {
         maxDistance={15}
         maxPolarAngle={Math.PI / 2}
       />
-      
+
       {/* Environment map for reflections */}
       <Environment preset="studio" />
     </Canvas>
@@ -1332,10 +1372,11 @@ export function Scene() {
 ```
 
 #### Slider Input Component
+
 ```typescript
 // components/controls/SliderInput.tsx
-import { useState, useCallback } from 'react';
-import { debounce } from 'lodash-es';
+import { useState, useCallback } from "react";
+import { debounce } from "lodash-es";
 
 interface SliderInputProps {
   label: string;
@@ -1356,55 +1397,55 @@ export function SliderInput({
   step,
   unit,
   onChange,
-  quickValues
+  quickValues,
 }: SliderInputProps) {
   const [localValue, setLocalValue] = useState(value);
-  
+
   // Debounced change handler
   const debouncedChange = useCallback(
     debounce((val: number) => onChange(val), 100),
     [onChange]
   );
-  
+
   const handleChange = (val: number) => {
     setLocalValue(val);
     debouncedChange(val);
   };
-  
+
   return (
     <div className="space-y-2">
       <div className="flex justify-between items-center">
-        <label className="text-sm font-medium text-gray-700">
-          {label}
-        </label>
+        <label className="text-sm font-medium text-gray-700">{label}</label>
         <span className="text-sm font-mono text-gray-900">
-          {localValue}{unit}
+          {localValue}
+          {unit}
         </span>
       </div>
-      
+
       <input
         type="range"
         min={min}
         max={max}
         step={step}
         value={localValue}
-        onChange={e => handleChange(Number(e.target.value))}
+        onChange={(e) => handleChange(Number(e.target.value))}
         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
       />
-      
+
       {quickValues && (
         <div className="flex gap-2">
-          {quickValues.map(val => (
+          {quickValues.map((val) => (
             <button
               key={val}
               onClick={() => handleChange(val)}
               className={`px-2 py-1 text-xs rounded transition ${
                 localValue === val
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 hover:bg-gray-200'
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-100 hover:bg-gray-200"
               }`}
             >
-              {val}{unit}
+              {val}
+              {unit}
             </button>
           ))}
         </div>
@@ -1418,44 +1459,38 @@ export function SliderInput({
 
 ```typescript
 // components/layout/DesignInterface.tsx
-import { useState } from 'react';
-import { useMediaQuery } from '@/lib/hooks/useMediaQuery';
-import { ToolPanel } from './ToolPanel';
-import { ViewportContainer } from './ViewportContainer';
-import { PropertiesPanel } from './PropertiesPanel';
-import { BottomSheet } from './BottomSheet';
-import { ViewControls } from './ViewControls';
+import { useState } from "react";
+import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
+import { ToolPanel } from "./ToolPanel";
+import { ViewportContainer } from "./ViewportContainer";
+import { PropertiesPanel } from "./PropertiesPanel";
+import { BottomSheet } from "./BottomSheet";
+import { ViewControls } from "./ViewControls";
 
 export function DesignInterface() {
-  const [activePanel, setActivePanel] = useState<string>('dimensions');
-  const isMobile = useMediaQuery('(max-width: 768px)');
-  const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1024px)');
-  
+  const [activePanel, setActivePanel] = useState<string>("dimensions");
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isTablet = useMediaQuery("(min-width: 769px) and (max-width: 1024px)");
+
   return (
     <div className="flex h-[calc(100vh-60px)]">
       {/* Desktop: Three column layout */}
       {!isMobile && !isTablet && (
         <>
-          <ToolPanel 
-            activePanel={activePanel}
-            onPanelChange={setActivePanel}
-          />
+          <ToolPanel activePanel={activePanel} onPanelChange={setActivePanel} />
           <ViewportContainer className="flex-1" />
           <PropertiesPanel activePanel={activePanel} />
         </>
       )}
-      
+
       {/* Tablet: Two column layout */}
       {isTablet && (
         <>
           <ViewportContainer className="flex-1" />
-          <PropertiesPanel 
-            activePanel={activePanel}
-            collapsible 
-          />
+          <PropertiesPanel activePanel={activePanel} collapsible />
         </>
       )}
-      
+
       {/* Mobile: Full screen with bottom sheet */}
       {isMobile && (
         <>
@@ -1465,7 +1500,7 @@ export function DesignInterface() {
           </BottomSheet>
         </>
       )}
-      
+
       {/* View controls (all devices) */}
       <ViewControls className="absolute bottom-0 left-0 right-0" />
     </div>
@@ -1478,38 +1513,38 @@ export function DesignInterface() {
 ```javascript
 // tailwind.config.js
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
         board: {
-          foam: '#f5f5f0',
-          fiberglass: '#e8f4f8',
-          carbon: '#1a1a1a'
-        }
+          foam: "#f5f5f0",
+          fiberglass: "#e8f4f8",
+          carbon: "#1a1a1a",
+        },
       },
       animation: {
-        'slide-up': 'slideUp 0.3s ease-out',
-        'fade-in': 'fadeIn 0.2s ease-in',
-        'pulse-subtle': 'pulseSubtle 2s ease-in-out infinite'
+        "slide-up": "slideUp 0.3s ease-out",
+        "fade-in": "fadeIn 0.2s ease-in",
+        "pulse-subtle": "pulseSubtle 2s ease-in-out infinite",
       },
       keyframes: {
         slideUp: {
-          '0%': { transform: 'translateY(100%)' },
-          '100%': { transform: 'translateY(0)' }
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0)" },
         },
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' }
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         pulseSubtle: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.8' }
-        }
-      }
-    }
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.8" },
+        },
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
 ```
 
@@ -1517,44 +1552,44 @@ export default {
 
 ```typescript
 // __tests__/geometry/surfboardGenerator.test.ts
-import { generateSurfboardMesh } from '@/lib/geometry/surfboardGenerator';
-import { defaultConfig } from '@/lib/constants';
+import { generateSurfboardMesh } from "@/lib/geometry/surfboardGenerator";
+import { defaultConfig } from "@/lib/constants";
 
-describe('Surfboard Generator', () => {
-  it('generates valid mesh from config', () => {
+describe("Surfboard Generator", () => {
+  it("generates valid mesh from config", () => {
     const mesh = generateSurfboardMesh(defaultConfig);
-    
+
     expect(mesh).toBeInstanceOf(THREE.Mesh);
     expect(mesh.geometry.attributes.position).toBeDefined();
     expect(mesh.material).toBeDefined();
   });
-  
-  it('calculates correct volume', () => {
+
+  it("calculates correct volume", () => {
     const config = {
       ...defaultConfig,
-      dimensions: { length: 72, width: 18.5, thickness: 2.5 }
+      dimensions: { length: 72, width: 18.5, thickness: 2.5 },
     };
-    
+
     const volume = calculateVolume(config);
     expect(volume).toBeCloseTo(32.4, 1); // 32.4L ±0.1
   });
-  
-  it('handles edge cases gracefully', () => {
+
+  it("handles edge cases gracefully", () => {
     const extremeConfig = {
       ...defaultConfig,
-      dimensions: { length: 240, width: 36, thickness: 6 } // 20ft monster
+      dimensions: { length: 240, width: 36, thickness: 6 }, // 20ft monster
     };
-    
+
     expect(() => generateSurfboardMesh(extremeConfig)).not.toThrow();
   });
 });
 
 // __tests__/components/SliderInput.test.tsx
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import { SliderInput } from '@/components/controls/SliderInput';
+import { render, fireEvent, waitFor } from "@testing-library/react";
+import { SliderInput } from "@/components/controls/SliderInput";
 
-describe('SliderInput', () => {
-  it('debounces onChange calls', async () => {
+describe("SliderInput", () => {
+  it("debounces onChange calls", async () => {
     const onChange = jest.fn();
     const { getByRole } = render(
       <SliderInput
@@ -1567,14 +1602,14 @@ describe('SliderInput', () => {
         onChange={onChange}
       />
     );
-    
-    const slider = getByRole('slider');
-    
+
+    const slider = getByRole("slider");
+
     // Rapid changes
     fireEvent.change(slider, { target: { value: 73 } });
     fireEvent.change(slider, { target: { value: 74 } });
     fireEvent.change(slider, { target: { value: 75 } });
-    
+
     // Should only call once after debounce
     await waitFor(() => expect(onChange).toHaveBeenCalledTimes(1));
     expect(onChange).toHaveBeenCalledWith(75);
@@ -1587,30 +1622,35 @@ describe('SliderInput', () => {
 ## 8. Next Steps & Recommendations
 
 ### Phase 1: Foundation (Week 1-2)
+
 - [ ] Set up React + TypeScript + Tailwind project
 - [ ] Implement basic Three.js scene with camera controls
 - [ ] Create responsive layout shell (header, panels, viewport)
 - [ ] Build core UI components (Button, Slider, etc.)
 
 ### Phase 2: Core Features (Week 3-4)
+
 - [ ] Implement surfboard geometry generator
 - [ ] Add dimension controls with real-time updates
 - [ ] Create shape customization (nose, tail, rails)
 - [ ] Implement material system and color picker
 
 ### Phase 3: Advanced Features (Week 5-6)
+
 - [ ] Add fin configuration system
 - [ ] Implement view presets and camera animations
 - [ ] Create dimension overlay system
 - [ ] Add save/load functionality
 
 ### Phase 4: Polish & Optimization (Week 7-8)
+
 - [ ] Mobile responsive optimization
 - [ ] Performance tuning (LOD, throttling)
 - [ ] Accessibility improvements
 - [ ] User testing and refinements
 
 ### Recommended Tools & Libraries
+
 - **3D Visualization**: Three.js, React Three Fiber, Drei
 - **State Management**: Zustand (lightweight, perfect for 3D apps)
 - **Forms**: React Hook Form + Zod validation
@@ -1620,6 +1660,7 @@ describe('SliderInput', () => {
 - **Testing**: Vitest + React Testing Library
 
 ### Performance Targets
+
 - **Initial Load**: < 3s on 3G
 - **3D Render**: 60fps on desktop, 30fps on mobile
 - **Interaction Response**: < 100ms for slider changes

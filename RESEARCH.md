@@ -7,6 +7,7 @@ This document preserves the research and alternative approaches evaluated during
 ## Research Phase (Completed)
 
 ### Evaluated Shaper3D API
+
 - **Documentation Review**: Professional CAD tool with parametric modeling
 - **API Capabilities**: Full parametric board design, CNC export, hydrodynamic simulation
 - **Limitations**: Requires licensing, limited web embedding options, proprietary format
@@ -14,6 +15,7 @@ This document preserves the research and alternative approaches evaluated during
 - **Integration Complexity**: High - requires dual system maintenance and conversion pipeline
 
 ### Evaluated Alternative 3D Solutions
+
 - **Three.js**: Custom WebGL rendering, maximum control, 100k+ GitHub stars
 - **Babylon.js**: Game engine approach, comprehensive physics/lighting, 23k+ stars
 - **React Three Fiber**: React + Three.js wrapper, declarative 3D, 27k+ stars ✅ **SELECTED**
@@ -22,14 +24,15 @@ This document preserves the research and alternative approaches evaluated during
 
 ### Comparison Matrix
 
-| Solution | Cost | Development Time | Accuracy | UX Quality | Maintainability |
-|----------|------|------------------|----------|------------|-----------------|
-| **React Three Fiber** | $0 | 4-6 weeks | Good (template-based) | Excellent | High |
-| Shaper3D | $600-1200/year | 8-10 weeks | Excellent (CAD-grade) | Good | Medium |
-| Hybrid Approach | $600-1200/year | 12-16 weeks | Excellent | Good | Low |
-| Babylon.js | $0 | 5-7 weeks | Good | Excellent | High |
+| Solution              | Cost           | Development Time | Accuracy              | UX Quality | Maintainability |
+| --------------------- | -------------- | ---------------- | --------------------- | ---------- | --------------- |
+| **React Three Fiber** | $0             | 4-6 weeks        | Good (template-based) | Excellent  | High            |
+| Shaper3D              | $600-1200/year | 8-10 weeks       | Excellent (CAD-grade) | Good       | Medium          |
+| Hybrid Approach       | $600-1200/year | 12-16 weeks      | Excellent             | Good       | Low             |
+| Babylon.js            | $0             | 5-7 weeks        | Good                  | Excellent  | High            |
 
 ### Decision Criteria
+
 - **Feature comparison**: React Three Fiber offers best balance of features vs complexity
 - **Performance benchmarks**: 60fps on mid-range devices, WebGL 2.0 support
 - **Cost analysis**: Zero licensing costs vs $600-1200/year for Shaper3D
@@ -45,6 +48,7 @@ This document preserves the research and alternative approaches evaluated during
 **Approach**: Use Shaper3D as primary modeling engine
 
 **Tasks Identified**:
+
 - [ ] Set up Shaper3D account & API access
 - [ ] Integrate Shaper3D SDK
 - [ ] Create board templates in Shaper3D
@@ -53,12 +57,14 @@ This document preserves the research and alternative approaches evaluated during
 - [ ] Implement save/load functionality
 
 **Pros**:
+
 - Professional CAD-grade accuracy
 - Direct CNC/manufacturing output
 - Hydrodynamic simulation built-in
 - Proven algorithms for surfboard design
 
 **Cons**:
+
 - $30-50/month licensing cost per user
 - Limited control over web UI/UX
 - Vendor lock-in risk
@@ -75,18 +81,21 @@ This document preserves the research and alternative approaches evaluated during
 **Approach**: Use Shaper3D for parametric modeling + Three.js for web visualization
 
 **Tasks Identified**:
+
 - [ ] Use Shaper3D for parametric modeling
 - [ ] Use Three.js for web visualization
 - [ ] Build conversion pipeline
 - [ ] Implement sync between tools
 
 **Pros**:
+
 - Best of both worlds (CAD accuracy + custom UX)
 - Professional-grade output for manufacturers
 - Full control over web visualization
 - Separation of concerns (modeling vs presentation)
 
 **Cons**:
+
 - **High Complexity**: Dual system maintenance, two codebases
 - **Sync Challenges**: Real-time bidirectional sync extremely difficult
 - **Conversion Overhead**: 1-3 second latency per change
@@ -103,6 +112,7 @@ This document preserves the research and alternative approaches evaluated during
 ## Selected Approach: Template-Based React Three Fiber
 
 **Why This Won**:
+
 1. **Zero cost** - No licensing fees
 2. **Fast development** - 4-6 weeks vs 12-16 weeks
 3. **Great UX** - Real-time updates, no conversion lag
@@ -111,12 +121,14 @@ This document preserves the research and alternative approaches evaluated during
 6. **Proven pattern** - Used by Tinkercad, Shapeways, etc.
 
 **Trade-offs Accepted**:
+
 - Not full CAD parametric history (acceptable for MVP)
 - Manual export to manufacturing formats (can automate later)
 - Template-based vs infinite flexibility (better UX for users)
 
 **Future Upgrade Path**:
 When manufacturers need CAD files:
+
 1. Build backend export service (not real-time sync)
 2. Users finalize design in web UI
 3. Server converts to STEP/STL using OpenCascade
