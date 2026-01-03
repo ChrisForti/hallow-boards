@@ -1,17 +1,16 @@
 import "./App.css";
-import Header from "./components/Header";
-import MainPage from "./components/mainPage";
-import Design from "./components/Design";
-import Footer from "./components/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Modeler from "./pages/Modeler";
 
 function App() {
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
-      <Header />
-      <MainPage />
-      <Design />
-      <Footer />
-    </div>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/modeler" element={<Modeler />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
