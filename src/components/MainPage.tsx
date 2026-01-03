@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function MainPage() {
   return (
     <div className="relative flex-1 overflow-hidden">
@@ -21,9 +23,12 @@ function MainPage() {
             </h2>
 
             <div className="flex gap-4 justify-center">
-              <button className="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-purple-500/50">
+              <Link
+                to="/modeler"
+                className="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-purple-500/50"
+              >
                 Start Your Board
-              </button>
+              </Link>
               <button className="px-8 py-3 rounded-xl border-2 border-purple-500 text-purple-200 font-bold text-lg hover:bg-purple-500/10 transition-all">
                 Learn More
               </button>

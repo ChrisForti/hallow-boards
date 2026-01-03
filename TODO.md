@@ -4,6 +4,7 @@
 
 ### 🎨 UI/UX Improvements
 
+- [ ] Fix header title font size (Tailwind base reset affecting Link component)
 - [ ] Add responsive design for mobile devices
 - [ ] Implement loading states for buttons and actions
 - [ ] Add animations/transitions between sections
