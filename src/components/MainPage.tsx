@@ -21,18 +21,6 @@ function MainPage() {
             <h2 className="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 animate-pulse">
               Welcome to Hallow Boards
             </h2>
-
-            <div className="flex gap-4 justify-center">
-              <Link
-                to="/modeler"
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-purple-500/50"
-              >
-                Start Your Board
-              </Link>
-              <button className="px-8 py-3 rounded-xl border-2 border-purple-500 text-purple-200 font-bold text-lg hover:bg-purple-500/10 transition-all">
-                Learn More
-              </button>
-            </div>
           </div>
         </main>
       </div>

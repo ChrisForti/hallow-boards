@@ -1,33 +1,21 @@
-import type {
-  BoardConfiguration,
-  TailShape,
-  FinConfiguration,
-} from "../../../types/surfboard";
+import type { TailShape, FinConfiguration } from "../../../types/surfboard";
 import { calculateVolume } from "../utils/surfboardMath";
+import { useBoardStore } from "../store/boardStore";
 
-interface ConfigPanelProps {
-  config: BoardConfiguration;
-  onChange: (config: BoardConfiguration) => void;
-}
+export default function ConfigPanel() {
+  const { config, updateDimensions, setConfig } = useBoardStore();
 
-export default function ConfigPanel({ config, onChange }: ConfigPanelProps) {
   const updateDimension = (
-    key: keyof BoardConfiguration["dimensions"],
+    key: keyof typeof config.dimensions,
     value: number
   ) => {
-    onChange({
-      ...config,
-      dimensions: {
-        ...config.dimensions,
-        [key]: value,
-      },
-    });
+    updateDimensions({ [key]: value });
   };
 
   const volume = calculateVolume(config.dimensions);
 
   return (
-    <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg space-y-6 overflow-y-auto h-full">
+    <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg space-y-6 overflow-y-auto overflow-x-hidden h-full">
       <h2 className="text-2xl font-bold text-gray-900">Customize Your Board</h2>
 
       {/* Volume Display */}
@@ -178,7 +166,7 @@ export default function ConfigPanel({ config, onChange }: ConfigPanelProps) {
           ).map((shape) => (
             <button
               key={shape}
-              onClick={() => onChange({ ...config, tailShape: shape })}
+              onClick={() => setConfig({ ...config, tailShape: shape })}
               className={`px-4 py-2 rounded capitalize font-medium transition-colors ${
                 config.tailShape === shape
                   ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white"
@@ -206,7 +194,7 @@ export default function ConfigPanel({ config, onChange }: ConfigPanelProps) {
           ).map((fin) => (
             <button
               key={fin}
-              onClick={() => onChange({ ...config, finConfig: fin })}
+              onClick={() => setConfig({ ...config, finConfig: fin })}
               className={`px-4 py-2 rounded capitalize font-medium transition-colors ${
                 config.finConfig === fin
                   ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white"
@@ -226,7 +214,7 @@ export default function ConfigPanel({ config, onChange }: ConfigPanelProps) {
           type="color"
           value={config.material.color}
           onChange={(e) =>
-            onChange({
+            setConfig({
               ...config,
               material: { ...config.material, color: e.target.value },
             })
@@ -243,7 +231,7 @@ export default function ConfigPanel({ config, onChange }: ConfigPanelProps) {
             <button
               key={finish}
               onClick={() =>
-                onChange({
+                setConfig({
                   ...config,
                   material: { ...config.material, finish },
                 })

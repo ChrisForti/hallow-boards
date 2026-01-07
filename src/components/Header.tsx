@@ -8,14 +8,25 @@ function Header() {
           to="/"
           className="text-4xl font-bold text-black hover:text-gray-700 transition-colors"
         >
-          Artisan Standups
+          Home
         </Link>
+        <div>
+          <h1 className="text-4xl">Hallow Boards</h1>
+        </div>
+        <div className="flex gap-4 justify-center">
+          <Link to="/modeler" className="flex gap-4 justify-center">
+            Start Your Board
+          </Link>
+        </div>
         <nav className="flex gap-6">
           <button className="text-black hover:text-gray-700 transition-colors">
             Features
           </button>
           <button className="text-black hover:text-gray-700 transition-colors">
             About
+          </button>
+          <button className="text-black hover:text-gray-700 transition-colors">
+            Learn More
           </button>
         </nav>
       </div>
