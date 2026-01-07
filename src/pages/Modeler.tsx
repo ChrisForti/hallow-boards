@@ -1,13 +1,10 @@
-import { useState } from "react";
 import Header from "../components/Header";
 import SurfboardViewer from "../features/modeler/components/SurfboardViewer";
 import ConfigPanel from "../features/modeler/components/ConfigPanel";
-import type { BoardConfiguration } from "../types/surfboard";
-import { DEFAULT_BOARD } from "../types/surfboard";
+import { useBoardStore } from "../features/modeler/store/boardStore";
 
 export default function Modeler() {
-  const [boardConfig, setBoardConfig] =
-    useState<BoardConfiguration>(DEFAULT_BOARD);
+  const { config: boardConfig, resetToDefault } = useBoardStore();
 
   return (
     <div className="h-screen w-full flex flex-col bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -21,7 +18,7 @@ export default function Modeler() {
           <h2 className="text-white text-xl font-bold mb-4">Board Templates</h2>
           <div className="space-y-2">
             <button
-              onClick={() => setBoardConfig(DEFAULT_BOARD)}
+              onClick={resetToDefault}
               className="w-full px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded transition-colors"
             >
               Default Shortboard
@@ -39,7 +36,7 @@ export default function Modeler() {
 
         {/* Right Sidebar - Configuration Panel */}
         <div className="w-96">
-          <ConfigPanel config={boardConfig} onChange={setBoardConfig} />
+          <ConfigPanel />
         </div>
       </div>
     </div>
