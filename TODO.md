@@ -4,6 +4,7 @@
 
 ### 🎨 UI/UX Improvements
 
+- [ ] Clean up excessive AI-generated Tailwind classes (simplify, consolidate)
 - [ ] Fix header title font size (Tailwind base reset affecting Link component)
 - [ ] Add responsive design for mobile devices
 - [ ] Implement loading states for buttons and actions
